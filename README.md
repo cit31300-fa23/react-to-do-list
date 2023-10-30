@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# React To Do App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Built based on [the MSN tutorial](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_todo_list_beginning)
 
-## Available Scripts
+## v.1 - Setup
+* `npx create-react-app react-to-do`
+* `cd react-to-do/src`
+* `rm -- App.test.js App.css logo.svg reportWebVitals.js setupTests.js`
+* Copy starter code for App.js and paste into `src/App.js`
+* Copy starter code for index.css and paste into `src/index.css`
+* Remove reportWebVitals references from `src/index.js`
+* Update `<title>` in `public/index.html`
+* `npm start` Review layout and discuss separate React components
 
-In the project directory, you can run:
+## v.2 - Build a Todo Component
+* `touch jsconfig.json` at root of project
+* Add contents to `jsconfig.json`
+* `mkdir src/components`
+* `mkdir src/components/Todo`
+* `touch src/components/Todo/Todo.js`
+* Copy a single `<li>` from `App.js` to `Todo.js`
+* Add import in `App.js`
+* Replace all `<li>` with instances of `<Todo />`
+* `npm start` - note that all Todos are showing the same name
+* Add `name` property to each instance of Todo in `App.js`
+* Implement `props` in `Todo.js`
+* Show difference in browser
+* Add `completed` property to each instance of Todo in `App.js`
+* Implement `props.completed` in `Todo.js`
+* Add `id` property to each instance of Todo in `App.js`
+* Implement `props.id` in `Todo.js`
 
-### `npm start`
+## v.3 - Using Data
+* Add `DATA` element to `index.js` and pass to `App` component
+* Add `console.log` statement in `App.js` to show the data passed to the component
+* Add `taskList` to `App.js`
+* Replace 3 `<Todo />` elements with `taskList`
+* Update `taskList` to render elements of `<Todo />` with props
+* Note warning in browser console about unique keys
+* Update `taskList` to include a unique key for each
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## v.4 - Adding Form and FilterButton Components
+* `mkdir src/components/Form src/components/FilterButton`
+* `touch src/components/Form/Form.js src/components/FilterButton/FilterButton.js`
+* Add contents for Form and FilterButton
+* Import Form and FilterButton into `App.js`

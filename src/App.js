@@ -14,12 +14,24 @@ function App(props) {
     setTasks([...tasks, newTask]); // Spread syntax
   }
 
+  function toggleTaskCompleted(id) {
+    // console.log(tasks[0]);
+    const updatedTasks = tasks.map( (task) => {
+      if (id === task.id) {
+        return { ...task, completed: !task.completed }
+      }
+      return task;
+    } )
+    setTasks(updatedTasks);
+  }
+
   //const taskList = props.tasks?.map((task) => task.name );
   const taskList = tasks.map((task) => <Todo 
     id={ task.id }
     name={ task.name }
     completed={ task.completed }
     key={ task.id }
+    toggleTaskCompleted={ toggleTaskCompleted }
   /> );
 
   // Count number of tasks and create a string to show the number on the UI

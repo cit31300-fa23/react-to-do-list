@@ -1,32 +1,94 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Todo( props ) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [newName, setNewName] = useState('');
+
+  function handleChange(e) {
+    setNewName(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.editTask(props.id, newName);
+    setNewName('');
+    setIsEditing(false);
+  }
+
+  const editingTemplate = (
+    <form onSubmit={handleSubmit} >
+    <div className="stack-small">
+      <div className="c-cb">
+      <input 
+        id={ props.id } 
+        type="checkbox" 
+        defaultChecked={ props.completed } 
+        onChange={ () => props.toggleTaskCompleted(props.id) }
+      />
+      <label className="todo-label" htmlFor={ props.id }>
+        New name for { props.name }
+      </label>
+      <input
+        id={props.id}
+        className="todo-text"
+        type="text"
+        value={ newName }
+        onChange={ handleChange }
+      />
+    </div>
+    <div className="btn-group">
+      <button 
+        type="button" 
+        className="btn"
+        onClick={() => setIsEditing(false) }
+      >
+        Cancel <span className="visually-hidden">{ props.name }</span>
+      </button>
+      <button 
+        type="submit" 
+        className="btn btn__primary todo-edit"
+        >
+        Save <span className="visually-hidden">{ props.name }</span>
+      </button>
+    </div>
+  </div>
+  </form>
+  );
+
+  const viewingTemplate = (
+    <div className="stack-small">
+      <div className="c-cb">
+      <input 
+        id={ props.id } 
+        type="checkbox" 
+        defaultChecked={ props.completed } 
+        onChange={ () => props.toggleTaskCompleted(props.id) }
+      />
+      <label className="todo-label" htmlFor={ props.id }>
+        { props.name }
+      </label>
+    </div>
+    <div className="btn-group">
+      <button 
+        type="button" 
+        className="btn"
+        onClick={ () => setIsEditing(true) }
+        >
+        Edit <span className="visually-hidden">{ props.name }</span>
+      </button>
+      <button 
+        type="button" 
+        className="btn btn__danger"
+        onClick={ () => props.deleteTask(props.id) }
+        >
+        Delete <span className="visually-hidden">{ props.name }</span>
+      </button>
+    </div>
+  </div>
+  );
+
     return (
-        <li className="todo stack-small">
-          <div className="c-cb">
-            <input 
-              id={ props.id } 
-              type="checkbox" 
-              defaultChecked={ props.completed } 
-              onChange={ () => props.toggleTaskCompleted(props.id) }
-            />
-            <label className="todo-label" htmlFor={ props.id }>
-              { props.name }
-            </label>
-          </div>
-          <div className="btn-group">
-            <button type="button" className="btn">
-              Edit <span className="visually-hidden">{ props.name }</span>
-            </button>
-            <button 
-              type="button" 
-              className="btn btn__danger"
-              onClick={ () => props.deleteTask(props.id) }
-              >
-              Delete <span className="visually-hidden">{ props.name }</span>
-            </button>
-          </div>
-        </li>
+        <li className="todo">{ isEditing ? editingTemplate : viewingTemplate }</li>
     )
 }
 

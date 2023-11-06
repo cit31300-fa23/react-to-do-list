@@ -25,6 +25,11 @@ function App(props) {
     setTasks(updatedTasks);
   }
 
+  function deleteTask(id) {
+    const remainingTasks = tasks.filter( (task) => task.id != id);
+    setTasks(remainingTasks);
+  }
+
   //const taskList = props.tasks?.map((task) => task.name );
   const taskList = tasks.map((task) => <Todo 
     id={ task.id }
@@ -32,6 +37,7 @@ function App(props) {
     completed={ task.completed }
     key={ task.id }
     toggleTaskCompleted={ toggleTaskCompleted }
+    deleteTask={ deleteTask }
   /> );
 
   // Count number of tasks and create a string to show the number on the UI
